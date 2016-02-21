@@ -4,32 +4,32 @@
 
 Name:          %{?scl_prefix}%{pkg_name}
 Version:       1.0
-Release:       10.2%{?dist}
+Release:       10.3%{?dist}
 Summary:       Maven XML Plugin
 Group:         Development/Libraries
 License:       ASL 2.0
 Url:           http://mojo.codehaus.org/xml-maven-plugin/
 Source0:       http://repo2.maven.org/maven2/org/codehaus/mojo/xml-maven-plugin/1.0/xml-maven-plugin-1.0-source-release.zip
 
-BuildRequires: maven30-mojo-parent
+BuildRequires: %{?scl_prefix}mojo-parent
 
-BuildRequires: maven30-apache-rat-plugin
+BuildRequires: %{?scl_prefix}apache-rat-plugin
 BuildRequires: %{?scl_prefix_java_common}maven-local
-BuildRequires: maven30-maven-changes-plugin
-BuildRequires: maven30-maven-clean-plugin
-BuildRequires: maven30-maven-compiler-plugin
-BuildRequires: maven30-maven-enforcer-plugin
-BuildRequires: maven30-maven-install-plugin
-BuildRequires: maven30-maven-invoker-plugin
-BuildRequires: maven30-maven-jar-plugin
-BuildRequires: maven30-maven-javadoc-plugin
-BuildRequires: maven30-maven-plugin-testing-harness
+BuildRequires: %{?scl_prefix}maven-changes-plugin
+BuildRequires: %{?scl_prefix}maven-clean-plugin
+BuildRequires: %{?scl_prefix}maven-compiler-plugin
+BuildRequires: %{?scl_prefix}maven-enforcer-plugin
+BuildRequires: %{?scl_prefix}maven-install-plugin
+BuildRequires: %{?scl_prefix}maven-invoker-plugin
+BuildRequires: %{?scl_prefix}maven-jar-plugin
+BuildRequires: %{?scl_prefix}maven-javadoc-plugin
+BuildRequires: %{?scl_prefix}maven-plugin-testing-harness
 
-BuildRequires: maven30-plexus-component-api
-BuildRequires: maven30-plexus-io
-BuildRequires: maven30-plexus-resources
-BuildRequires: maven30-plexus-utils
-BuildRequires: maven30-saxon
+BuildRequires: %{?scl_prefix}plexus-component-api
+BuildRequires: %{?scl_prefix}plexus-io
+BuildRequires: %{?scl_prefix}plexus-resources
+BuildRequires: %{?scl_prefix}plexus-utils
+BuildRequires: %{?scl_prefix}saxon
 BuildRequires: %{?scl_prefix_java_common}xerces-j2
 BuildRequires: %{?scl_prefix_java_common}xml-commons-apis
 BuildRequires: %{?scl_prefix_java_common}xml-commons-resolver
@@ -47,7 +47,7 @@ This package contains the API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 for d in LICENSE NOTICE ; do
@@ -66,13 +66,13 @@ sed -i 's|stylesheet |stylesheet version="1.0" |'  src/it/it8/src/main/xsl/it8.x
 %{?scl:EOF}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build -f -- install
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -85,6 +85,9 @@ set -e -x
 %doc LICENSE.txt NOTICE.txt
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-10.3
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.0-10.2
 - maven33 rebuild
 
