@@ -4,7 +4,7 @@
 
 Name:          %{?scl_prefix}%{pkg_name}
 Version:       1.0
-Release:       10.3%{?dist}
+Release:       10.4%{?dist}
 Summary:       Maven XML Plugin
 Group:         Development/Libraries
 License:       ASL 2.0
@@ -14,7 +14,7 @@ Source0:       http://repo2.maven.org/maven2/org/codehaus/mojo/xml-maven-plugin/
 BuildRequires: %{?scl_prefix}mojo-parent
 
 BuildRequires: %{?scl_prefix}apache-rat-plugin
-BuildRequires: %{?scl_prefix_java_common}maven-local
+BuildRequires: %{?scl_prefix}maven-local
 BuildRequires: %{?scl_prefix}maven-changes-plugin
 BuildRequires: %{?scl_prefix}maven-clean-plugin
 BuildRequires: %{?scl_prefix}maven-compiler-plugin
@@ -85,6 +85,9 @@ set -e -x
 %doc LICENSE.txt NOTICE.txt
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0-10.4
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.0-10.3
 - maven33 rebuild #2
 
