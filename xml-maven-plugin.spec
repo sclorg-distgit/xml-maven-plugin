@@ -4,7 +4,7 @@
 
 Name:          %{?scl_prefix}%{pkg_name}
 Version:       1.0
-Release:       10.4%{?dist}
+Release:       10.5%{?dist}
 Summary:       Maven XML Plugin
 Group:         Development/Libraries
 License:       ASL 2.0
@@ -79,12 +79,16 @@ set -e -x
 
 %files -f .mfiles
 %dir %{_javadir}/%{pkg_name}
+%dir %{_mavenpomdir}/%{pkg_name}
 %doc LICENSE.txt NOTICE.txt
 
 %files javadoc -f .mfiles-javadoc
 %doc LICENSE.txt NOTICE.txt
 
 %changelog
+* Thu Apr 14 2016 Michal Srb <msrb@redhat.com> - 1.0-10.5
+- Fix directory ownership (Resolves: rhbz#1325866)
+
 * Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.0-10.4
 - Fix BR on maven-local & co.
 
